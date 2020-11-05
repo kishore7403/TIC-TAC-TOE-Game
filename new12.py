@@ -1,3 +1,4 @@
+print("XO GAME")
 ch='1'
 while(ch=='1'):
     mat=[[0 for x in range(3)] for y in range(3)]
@@ -8,7 +9,15 @@ while(ch=='1'):
             j1=j
             index=((i1+1)*10)+(j1+1)
             mat[i][j]=index
-    print(mat)
+    def display(mat):
+        i=0
+        while i<3:
+            for j in range(0,3):
+                print(mat[i][j],end=" ")
+                if j==2:
+                    print('\n')
+            i=i+1
+    display(mat)
     def choice():
         print("press 1.play agian  0.exit")
         ch=input()
@@ -16,7 +25,13 @@ while(ch=='1'):
     def enter():
         m2=int(input("row:"))
         n2=int(input("col:"))
-        return(m2,n2)
+        print('\n')
+        if(m2<=3 and n2<=3 and m2>0 and n2>0):
+            return(m2,n2)
+        else:
+            print("enter valid index")
+            print("give it a try again!!!")
+            return(0,0)
     def assign(mat,m,n,val):
         mat[m-1][n-1]=val
         return(mat)
@@ -115,13 +130,18 @@ while(ch=='1'):
             val='o'
         else:
             val='x'
-        print(val,"turn")
-        m,n=enter()
+        print(val,"--->turn")
+        m=n=0
+        while(m==0 and n==0):
+                m,n=enter()
         while(mat[m-1][n-1]=='x' or mat[m-1][n-1]=='o'):
-            print("CHECK:space filled with",mat[m-1][n-1])
-            m,n=enter()
+            print("CHECK:space already filled with",mat[m-1][n-1])
+            print("give it a try again!!!")
+            m=n=0
+            while(m==0 and n==0):
+                m,n=enter()
         mat=assign(mat,m,n,val)
-        print(mat)
+        display(mat)
         resr,resc,resld,resrd=1,1,1,1
         resr=rowcheck(mat)
         resc=colcheck(mat)
