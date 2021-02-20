@@ -1,22 +1,17 @@
 print("XO GAME")
 ch='1'
 while(ch=='1'):
-    mat=[[0 for x in range(3)] for y in range(3)]
+    mat=[[" " for x in range(3)] for y in range(3)]
     m,n,val=0,0,0
-    for i in range(0,3):
-        for j in range(0,3):
-            i1=i
-            j1=j
-            index=((i1+1)*10)+(j1+1)
-            mat[i][j]=index
     def display(mat):
-        i=0
-        while i<3:
+        for i in range(0,3):
             for j in range(0,3):
-                print(mat[i][j],end=" ")
-                if j==2:
-                    print('\n')
-            i=i+1
+                if j<2:
+                    print(mat[i][j],end="|")
+                else:
+                    print(mat[i][j])
+            if i<2:
+                print("-+-+-")
     display(mat)
     def choice():
         print("press 1.play agian  0.exit")
@@ -154,16 +149,8 @@ while(ch=='1'):
     print("press 1.play agian  0.exit")
     ch=input()
     while ch!='1' and ch!='0':
-        print("inalid choice")
+        print("invalid choice")
         ch=choice()
 while(ch=='0'):
     print("game closed")
     break
-    
-    
-
-            
-            
-        
-
-    
